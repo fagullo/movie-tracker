@@ -18,10 +18,8 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body>
+    <body class="min-h-screen flex flex-col">
         <x-partials.header />
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
+        {{ $slot }}
     </body>
 </html>

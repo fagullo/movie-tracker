@@ -3,7 +3,7 @@
         <div class="grow grid gap-8 grid-cols-3">
             <ul class="flex gap-8 items-center">
                 <li><a href="">Home</a></li>
-                <li><a href="">Trending Movies</a></li>
+                <li><a href="">Movie List</a></li>
             </ul>
             <div class="flex justify-center">
                 <a href="{{ route('home') }}">
