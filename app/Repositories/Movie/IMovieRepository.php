@@ -13,4 +13,71 @@ interface IMovieRepository
      * @return array
      */
     public function paginate($pageSize = 0, $page = 10);
+
+    /**
+     * Get all the models matching with the given list of IDs.
+     *
+     * @param array $ids
+     *
+     * @return array
+     */
+    public function getByIds($ids);
+
+    /**
+     * Marks a movie as liked by a given user.
+     *
+     * @param int $movieId
+     * @param int $userId
+     *
+     * @return array
+     */
+    public function like($movieId, $userId);
+
+    /**
+     * Removes a like from a movie.
+     *
+     * @param int $movieId
+     * @param int $userId
+     *
+     * @return array
+     */
+    public function removeLike($movieId, $userId);
+
+    /**
+     * Counts the number of likes received
+     *
+     * @param int $movieId
+     *
+     * @return array
+     */
+    public function likesCount($movieId);
+
+    /**
+     * Flags a movie as viewed by a given user.
+     *
+     * @param int $movieId
+     * @param int $userId
+     *
+     * @return array
+     */
+    public function view($movieId, $userId);
+
+    /**
+     * Removes a view from a movie.
+     *
+     * @param int $movieId
+     * @param int $userId
+     *
+     * @return array
+     */
+    public function removeView($movieId, $userId);
+
+    /**
+     * Counts the number of views received
+     *
+     * @param int $movieId
+     *
+     * @return array
+     */
+    public function viewsCount($movieId);
 }

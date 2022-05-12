@@ -83,8 +83,7 @@ class CrudRepositoryTest extends TestCase
 
         $this->assertTrue($isUpdated);
 
-        $searchMovie = app()
-            ->make(IMovieRepository::class)
+        $searchMovie = $repository
             ->find($targetMovie->id);
 
         $this->assertNotEquals($targetMovie->title, $searchMovie->title);

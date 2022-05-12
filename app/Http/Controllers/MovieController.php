@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Movie\IMovieRepository;
+use App\Repositories\Movie\IMovieLikeRepository;
 
 class MovieController extends Controller
 {
