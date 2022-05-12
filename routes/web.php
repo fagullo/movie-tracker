@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/movies', function () {
+    return view('movie-list');
+})->name('movie-list');
+
+Route::get('/movies/{movie}', function () {
+    return view('movie');
+})->name('movie-details');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

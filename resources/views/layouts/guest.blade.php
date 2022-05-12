@@ -19,7 +19,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="min-h-screen flex flex-col">
-        <x-partials.header />
+        @include('layouts.navigation')
         {{ $slot }}
     </body>
 </html>
