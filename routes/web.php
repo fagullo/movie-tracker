@@ -21,9 +21,8 @@ Route::get('/', [HomeController::class, 'show'])
 Route::get('/movies', [MovieController::class, 'list'])
     ->name('movie-list');
 
-Route::get('/movies/{movie}', function () {
-    return view('movie');
-})->name('movie-details');
+Route::get('/movies/{movie}', [MovieController::class, 'show'])
+    ->name('movie-details');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -20,6 +20,10 @@ class Movie extends Model
         'year',
         'image',
         'crew',
+        'imdb_reference',
+        'imdb_rating',
+        'imdb_rating_count',
+        'synopsis'
     ];
 
     /**

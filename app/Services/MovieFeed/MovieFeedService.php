@@ -3,6 +3,7 @@
 namespace App\Services\MovieFeed;
 
 use App\Repositories\Movie\IMovieRepository;
+use Faker\Factory;
 
 abstract class MovieFeedService
 {
@@ -22,6 +23,9 @@ abstract class MovieFeedService
         $movieRepository = app()
             ->make(IMovieRepository::class);
 
+        $faker = Factory::create();
+
+
         foreach($this->getMovies() as $movie) {
             $movieRepository
                 ->create([
@@ -33,6 +37,7 @@ abstract class MovieFeedService
                     'imdb_reference' => $movie->id,
                     'imdb_rating' => $movie->imDbRating,
                     'imdb_rating_count' => $movie->imDbRatingCount,
+                    'synopsis' => implode(' ', $faker->words(300))
                 ]);
         }
     }
