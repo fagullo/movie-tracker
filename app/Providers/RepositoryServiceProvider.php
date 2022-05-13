@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\User\IUserRepository;
 use App\Repositories\Movie\IMovieRepository;
+use App\Repositories\User\EloquentUserRepository;
 use App\Repositories\Movie\EloquentMovieRepository;
 use App\Repositories\MovieView\IMovieViewRepository;
 use App\Repositories\MovieLike\IMovieLikeRepository;
@@ -19,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(IUserRepository::class, EloquentUserRepository::class);
         $this->app->bind(IMovieRepository::class, EloquentMovieRepository::class);
         $this->app->bind(IMovieLikeRepository::class, EloquentMovieLikeRepository::class);
         $this->app->bind(IMovieViewRepository::class, EloquentMovieViewRepository::class);

@@ -21,6 +21,15 @@ class MovieLike extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'liked_at' => 'datetime:Y-m-d',
+    ];
+
+    /**
      * The name of the table
      *
      * @var string
