@@ -14,6 +14,35 @@ class MovieLikesRepositoryTest extends TestCase
 {
     use RefreshDatabase;
 
+
+    /**
+     * Test that trending movies are correctly returned.
+     *
+     * @return void
+     */
+    public function test_movie_liked_by()
+    {
+        $movie = Movie::factory()
+            ->create();
+
+        $likeUser = User::factory()
+            ->create();
+
+        $noLikeUser = User::factory()
+            ->create();
+
+        $movieRepository =  app()
+            ->make(IMovieRepository::class);
+
+        $movieLikeRepository = app()
+            ->make(IMovieLikeRepository::class);
+
+        $movieRepository->like($movie->id, $likeUser->id);
+
+        $this->assertTrue($movieLikeRepository->isMovieLikedBy($movie->id, $likeUser->id));
+        $this->assertFalse($movieLikeRepository->isMovieLikedBy($movie->id, $noLikeUser->id));
+    }
+
     /**
      * Test that top movies are correctly returned.
      *

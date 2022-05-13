@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\Movie\IMovieRepository;
+use App\Repositories\MovieView\IMovieViewRepository;
+use App\Repositories\MovieLike\IMovieLikeRepository;
 
 class MovieController extends Controller
 {
@@ -29,8 +32,15 @@ class MovieController extends Controller
         $movie = app()->make(IMovieRepository::class)
             ->find($movieId);
 
-        $isLiked = true;
-        $isViewed = false;
+        $userId = Auth::check() ? Auth::user()->id : null;
+
+        $isLiked = app()
+            ->make(IMovieLikeRepository::class)
+            ->isMovieLikedBy($movieId, $userId);
+
+        $isViewed = app()
+            ->make(IMovieViewRepository::class)
+            ->isMovieViewedBy($movieId, $userId);;
 
         return view('movie', compact('movie', 'isLiked', 'isViewed'));
     }

@@ -795,6 +795,12 @@ select {
 .w-48 {
   width: 12rem;
 }
+.w-32 {
+  width: 8rem;
+}
+.w-24 {
+  width: 6rem;
+}
 .w-1\/2 {
   width: 50%;
 }
@@ -812,9 +818,6 @@ select {
 }
 .w-40 {
   width: 10rem;
-}
-.w-24 {
-  width: 6rem;
 }
 .max-w-xl {
   max-width: 36rem;
@@ -1198,10 +1201,6 @@ select {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
 }
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1471,12 +1470,12 @@ select {
     flex-direction: row;
   }
 
-  .md\:gap-8 {
-    gap: 2rem;
-  }
-
   .md\:gap-0 {
     gap: 0px;
+  }
+
+  .md\:gap-8 {
+    gap: 2rem;
   }
 
   .md\:px-0 {

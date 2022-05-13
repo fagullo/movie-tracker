@@ -14,7 +14,7 @@
                 <x-movie.data key="Synopsis" :value="ucfirst($movie->synopsis)" />
 
                 @if(Auth::check())
-                    <x-movie.user-review :is_liked="$isLiked" :is_viewed="$isViewed" />
+                    <livewire:user-review :movie="$movie->id" :is_liked="$isLiked" :is_viewed="$isViewed"/>
                 @endif
             </div>
         </div>

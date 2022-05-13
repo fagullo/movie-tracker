@@ -9,13 +9,33 @@ use App\Repositories\MovieLike\IMovieLikeRepository;
 
 class CacheStatsService implements IStatsService
 {
+    /**
+     * @inheritDoc
+     */
+    public function refreshTopMovies()
+    {
+        $key = $this->generateTopMoviesKey(config('movies.top-movies-count'));
+        Cache::forget($key);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function refreshTrendingMovies()
+    {
+        $key = $this->generateTrendingMoviesKey(
+            config('movies.trending-movies-count'),
+            config('movies.trending-movies-days')
+        );
+        Cache::forget($key);
+    }
 
     /**
      * @inheritDoc
      */
     public function topMovies($moviesCount = 5)
     {
-        $key = sprintf('top_%u_movies', $moviesCount);
+        $key = $this->generateTopMoviesKey($moviesCount);
         if (Cache::has($key)) {
             return Cache::get($key);
         }
@@ -103,9 +123,13 @@ class CacheStatsService implements IStatsService
     /**
      * @inheritDoc
      */
-    public function trendingMovies($moviesCount = 5, $daysCount = 7)
+    public function trendingMovies($moviesCount = 5, $daysCount = null)
     {
-        $key = sprintf('trending_%u_movies+%u', $moviesCount, $daysCount);
+        if ($daysCount == null) {
+            $daysCount = config('movies.trending-movies-days');
+        }
+
+        $key = $this->generateTrendingMoviesKey($moviesCount, $daysCount);
         if (Cache::has($key)) {
             return Cache::get($key);
         }
@@ -115,5 +139,28 @@ class CacheStatsService implements IStatsService
         Cache::put($key, $movies);
 
         return $movies;
+    }
+
+    /**
+     * Generates the cache top movies key for a given number of movies
+     *
+     * @param int $moviesCount the number of movies
+     * @return string
+     */
+    private function generateTopMoviesKey($moviesCount)
+    {
+        return sprintf('top_%u_movies', $moviesCount);
+    }
+
+    /**
+     * Generates the cache top movies key for a given number of movies
+     *
+     * @param int $moviesCount the number of movies
+     * @param int $daysCount the number of days
+     * @return string
+     */
+    private function generateTrendingMoviesKey($moviesCount, $daysCount)
+    {
+        return sprintf('trending_%u_movies+%u', $moviesCount, $daysCount);
     }
 }

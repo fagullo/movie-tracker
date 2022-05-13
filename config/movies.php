@@ -15,5 +15,7 @@ return [
 
     'trending-movies-count' => 5,
 
+    'trending-movies-days' => 7,
+
 
 ];

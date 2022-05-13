@@ -33,5 +33,18 @@ class EloquentMovieLikeRepository extends EloquentCrudRepository implements IMov
             ->toArray();
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function isMovieLikedBy($movieId, $userId)
+    {
+        $like = $this->model
+            ->where('movie_id', $movieId)
+            ->where('user_id', $userId)
+            ->first();
+
+        return $like != null;
+    }
+
 
 }
