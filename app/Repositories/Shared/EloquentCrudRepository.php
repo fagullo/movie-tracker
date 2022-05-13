@@ -28,20 +28,6 @@ abstract class EloquentCrudRepository implements ICrudRepository
     }
 
     /**
-     * Get all the models.
-     *
-     * @param int $page
-     * @param int $pageSize
-     *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function paginate($page = 0, $pageSize = 10)
-    {
-        return $this->model
-            ->paginate($pageSize);
-    }
-
-    /**
      * Gets a model by ID.
      *
      * @param int $id The model's ID

@@ -18,10 +18,10 @@ class HomeController extends Controller
             ->make(IStatsService::class);
 
         $top = $statsService
-            ->topMovies(5);
+            ->topMovies(config('movies.top-movies-count'));
 
         $trending = $statsService
-            ->trendingMovies(5);
+            ->trendingMovies(config('movies.trending-movies-count'));
 
         return view('welcome', compact('top', 'trending'));
     }

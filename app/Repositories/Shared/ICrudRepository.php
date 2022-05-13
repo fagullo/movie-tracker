@@ -5,13 +5,6 @@ namespace App\Repositories\Shared;
 interface ICrudRepository
 {
     /**
-    * Get a list of models paginated.
-    *
-    * @return array
-    */
-    public function paginate($page = 0, $pageSize = 10);
-
-    /**
      * Gets a model by ID.
      *
      * @param int  $id The model's ID
