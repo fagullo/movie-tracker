@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the likes.
+     */
+    public function likes()
+    {
+        return $this->hasMany(MovieLike::class);
+    }
+
+    /**
+     * Get the likes.
+     */
+    public function views()
+    {
+        return $this->hasMany(MovieView::class);
+    }
 }

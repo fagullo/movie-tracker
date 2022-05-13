@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\RemoveMovieLike;
+use App\Events\MovieLikeUpdated;
+use App\Events\MovieViewUpdated;
+use App\Listeners\UpdateTopMovies;
+use App\Listeners\UpdateTrendingMovies;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        MovieLikeUpdated::class => [
+            UpdateTopMovies::class
+        ],
+        MovieViewUpdated::class => [
+            UpdateTrendingMovies::class
         ],
     ];
 
