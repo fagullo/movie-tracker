@@ -11,6 +11,12 @@ abstract class MovieFeedService
      */
     abstract protected function getMovies();
 
+    /**
+     * Obtains a list of movies from and stores in the local database
+     *
+     * @return void
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function downloadMovies()
     {
         $movieRepository = app()
