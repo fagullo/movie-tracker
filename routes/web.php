@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,8 @@ Route::get('/movies', [MovieController::class, 'list'])
 Route::get('/movies/{movie}', [MovieController::class, 'show'])
     ->name('movie-details');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'show'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
 require __DIR__.'/auth.php';
