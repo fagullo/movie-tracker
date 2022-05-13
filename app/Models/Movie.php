@@ -21,4 +21,20 @@ class Movie extends Model
         'image',
         'crew',
     ];
+
+    /**
+     * The likes received.
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'users_like_movies', 'movie_id', 'user_id');
+    }
+
+    /**
+     * The views received.
+     */
+    public function views()
+    {
+        return $this->belongsToMany(User::class, 'users_view_movies', 'movie_id', 'user_id');
+    }
 }
