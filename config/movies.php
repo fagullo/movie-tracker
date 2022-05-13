@@ -6,6 +6,14 @@ use Monolog\Handler\SyslogUdpHandler;
 
 return [
 
-    'page_size' => 15
+    //The number og movies to show by page
+    'page_size' => 15,
+
+    'feed' => 'imdb_top250.json',
+
+    'top-movies-count' => 5,
+
+    'trending-movies-count' => 5,
+
 
 ];
