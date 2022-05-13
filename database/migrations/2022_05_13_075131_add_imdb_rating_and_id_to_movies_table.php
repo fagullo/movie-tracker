@@ -40,7 +40,13 @@ return new class extends Migration
     {
         Schema::table('movies', function (Blueprint $table) {
             $table->dropColumn('imdb_reference');
+        });
+
+        Schema::table('movies', function (Blueprint $table) {
             $table->dropColumn('imdb_rating');
+        });
+
+        Schema::table('movies', function (Blueprint $table) {
             $table->dropColumn('imdb_rating_count');
         });
     }

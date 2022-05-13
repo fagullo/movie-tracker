@@ -38,5 +38,18 @@ class EloquentMovieViewRepository extends EloquentCrudRepository implements IMov
             ->toArray();
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function isMovieViewedBy($movieId, $userId)
+    {
+        $view = $this->model
+            ->where('movie_id', $movieId)
+            ->where('user_id', $userId)
+            ->first();
+
+        return $view != null;
+    }
+
 
 }

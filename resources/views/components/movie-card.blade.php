@@ -1,6 +1,6 @@
 @props(['movie'])
 <div class="card bg-zinc-900 h-full rounded-xl p-6 space-y-4 text-white flex flex-col justify-between">
-    <a href="#">
+    <a href="{{ route('movie-details', $movie->id) }}">
         <img class="w-full rounded-md transition hover:bg-cyan-300"
              src="{{ $movie->image }}"
              alt="">

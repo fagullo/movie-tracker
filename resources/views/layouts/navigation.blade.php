@@ -57,6 +57,9 @@
                             </x-slot>
                     </x-dropdown>
                     @else
+                        <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                            {{ __('Register') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                             {{ __('Login') }}
                         </x-nav-link>
@@ -114,6 +117,9 @@
             <!-- Responsive Settings Options -->
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                        {{ __('Register') }}
+                    </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
                         {{ __('Login') }}
                     </x-responsive-nav-link>

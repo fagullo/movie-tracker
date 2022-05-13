@@ -5,6 +5,16 @@ namespace App\Services\Stats;
 interface IStatsService
 {
     /**
+     * Refresh top movies list
+     */
+    public function refreshTopMovies();
+
+    /**
+     * Refresh trending movies list
+     */
+    public function refreshTrendingMovies();
+
+    /**
      * Get a list of the top (most liked) movies.
      *
      * @param int $moviesCount the number of movies to be returned

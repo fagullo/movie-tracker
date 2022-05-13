@@ -4,6 +4,8 @@ namespace App\Repositories\Movie;
 
 use Carbon\Carbon;
 use App\Models\Movie;
+use App\Events\MovieViewUpdated;
+use App\Events\MovieLikeUpdated;
 use App\Repositories\Shared\EloquentCrudRepository;
 
 class EloquentMovieRepository extends EloquentCrudRepository implements IMovieRepository
@@ -60,6 +62,8 @@ class EloquentMovieRepository extends EloquentCrudRepository implements IMovieRe
             ->attach($userId, [
                 'liked_at' => Carbon::now()
             ]);
+
+        MovieLikeUpdated::dispatch();
     }
 
     /**
@@ -72,6 +76,8 @@ class EloquentMovieRepository extends EloquentCrudRepository implements IMovieRe
 
         $movie->likes()
             ->detach($userId);
+
+        MovieLikeUpdated::dispatch();
     }
 
     /**
@@ -99,6 +105,8 @@ class EloquentMovieRepository extends EloquentCrudRepository implements IMovieRe
             ->attach($userId, [
                 'viewed_at' => Carbon::now()
             ]);
+
+        MovieViewUpdated::dispatch();
     }
 
     /**
@@ -112,6 +120,8 @@ class EloquentMovieRepository extends EloquentCrudRepository implements IMovieRe
         $movie
             ->views()
             ->detach($userId);
+
+        MovieViewUpdated::dispatch();
     }
 
     /**

@@ -17,9 +17,13 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        @livewireStyles
     </head>
-    <body class="min-h-screen flex flex-col">
-        @include('layouts.navigation')
-        {{ $slot }}
+    <body>
+        @livewireScripts
+        <main class="min-h-screen flex flex-col">
+            @include('layouts.navigation')
+            {{ $slot }}
+        </main>
     </body>
 </html>

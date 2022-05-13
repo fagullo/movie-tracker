@@ -12,4 +12,14 @@ interface IMovieLikeRepository
      * @return array
      */
     public function getTopMovieIds($moviesCount);
+
+    /**
+     * Checks if a movie is liekd by a given user
+     *
+     * @param int $movieId the DI of the movie
+     * @param int $userId the ID of the user
+     *
+     * @return boolean
+     */
+    public function isMovieLikedBy($movieId, $userId);
 }

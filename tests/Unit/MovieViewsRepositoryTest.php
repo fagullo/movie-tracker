@@ -19,6 +19,34 @@ class MovieViewsRepositoryTest extends TestCase
      *
      * @return void
      */
+    public function test_movie_viewed_by()
+    {
+        $movie = Movie::factory()
+            ->create();
+
+        $viewUser = User::factory()
+            ->create();
+
+        $noviewUser = User::factory()
+            ->create();
+
+        $movieRepository =  app()
+            ->make(IMovieRepository::class);
+
+        $movieViewRepository = app()
+            ->make(IMovieViewRepository::class);
+
+        $movieRepository->view($movie->id, $viewUser->id);
+
+        $this->assertTrue($movieViewRepository->isMovieViewedBy($movie->id, $viewUser->id));
+        $this->assertFalse($movieViewRepository->isMovieViewedBy($movie->id, $noviewUser->id));
+    }
+
+    /**
+     * Test that trending movies are correctly returned.
+     *
+     * @return void
+     */
     public function test_trending_movies()
     {
         $moviesCount = 10;
