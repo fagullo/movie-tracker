@@ -60,6 +60,24 @@ class StatsServiceTest extends TestCase
     }
 
     /**
+     * Test that top movies works when there is no enough movies liked.
+     *
+     * @return void
+     */
+    public function test_not_enough_likes()
+    {
+        $moviesCount = 5;
+        Movie::factory()
+            ->count($moviesCount)
+            ->create();
+
+        $topMovies = app()
+            ->make(IStatsService::class)
+            ->topMovies(5);
+        $this->assertCount(5, $topMovies);
+    }
+
+    /**
      * Test that top movies are correctly returned.
      *
      * @return void
@@ -76,6 +94,24 @@ class StatsServiceTest extends TestCase
 
         $topMovies = $statsService
             ->trendingMovies(5, 1);
+        $this->assertCount(5, $topMovies);
+    }
+
+    /**
+     * Test that trending movies works when there is no enough movies viewed.
+     *
+     * @return void
+     */
+    public function test_not_enough_views()
+    {
+        $moviesCount = 5;
+        Movie::factory()
+            ->count($moviesCount)
+            ->create();
+
+        $topMovies = app()
+            ->make(IStatsService::class)
+            ->trendingMovies(5);
         $this->assertCount(5, $topMovies);
     }
 }

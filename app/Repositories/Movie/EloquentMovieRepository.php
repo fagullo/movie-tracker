@@ -40,6 +40,17 @@ class EloquentMovieRepository extends EloquentCrudRepository implements IMovieRe
     /**
      * @inheritdoc
      */
+    public function getNotIn($limit, $ids)
+    {
+        return $this->model
+            ->whereNotIn('id', $ids)
+            ->limit($limit)
+            ->get();
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function like($movieId, $userId)
     {
         $movie = $this

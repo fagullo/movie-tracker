@@ -43,9 +43,11 @@ class CacheStatsService implements IStatsService
             ->make(IMovieRepository::class)
             ->getByIds($movieIds);
 
-        return $movies->sortBy(function($movie) use ($movieIds) {
+        $movies = $movies->sortBy(function ($movie) use ($movieIds) {
             return array_search($movie->id, $movieIds);
         });
+
+        return $this->completeMovieList($movies, $moviesCount, $movieIds);
     }
 
 
@@ -66,9 +68,36 @@ class CacheStatsService implements IStatsService
             ->make(IMovieRepository::class)
             ->getByIds($movieIds);
 
-        return $movies->sortBy(function($movie) use ($movieIds) {
+        $movies = $movies->sortBy(function ($movie) use ($movieIds) {
             return array_search($movie->id, $movieIds);
         });
+
+        return $this->completeMovieList($movies, $moviesCount, $movieIds);
+    }
+
+    /**
+     * Completes a given list with some extra movies if the list count is under the guven limit.
+     *
+     * @param array $movies      target list
+     * @param int   $moviesCount limit
+     * @param array $notIn       IDs to avoid
+     * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    private function completeMovieList($movies, $moviesCount, $notIn = [])
+    {
+        $limit = $moviesCount - count($movies);
+
+        if ($limit > 0) {
+            return $movies
+                ->concat(
+                    app()
+                        ->make(IMovieRepository::class)
+                        ->getNotIn($limit, $notIn)
+                );
+        }
+
+        return $movies;
     }
 
     /**

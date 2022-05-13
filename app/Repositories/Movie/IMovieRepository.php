@@ -24,6 +24,16 @@ interface IMovieRepository
     public function getByIds($ids);
 
     /**
+     * Get a given number of models not included within the given list
+     *
+     * @param array $limit number of models to retrieve
+     * @param array $ids list of IDs to avoid
+     *
+     * @return array
+     */
+    public function getNotIn($limit, $ids);
+
+    /**
      * Marks a movie as liked by a given user.
      *
      * @param int $movieId
